@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 //context
