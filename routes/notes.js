@@ -49,10 +49,10 @@ router.post(
     const { title, body, label } = req.body;
     try {
       const newNote = new Note({
+        user: req.user.id,
         title,
         body,
         label,
-        user: req.user.id,
       });
 
       //new db entry created and saved
@@ -71,7 +71,7 @@ router.post(
 // @access  Private (only for admin users)
 
 router.put("/:id", auth, async (req, res) => {
-  const { name, colour, price, size, quantity } = req.body;
+  const { title, body, label } = req.body;
 
   // build note object
   const noteFields = {};
