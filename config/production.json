@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://notedAdmin:U4ZlbXTGaajNSkoV@notescluster.nuo4z.mongodb.net/notes?retryWrites=true&w=majority",
+  "jwtSecret": "Secret"
+}
