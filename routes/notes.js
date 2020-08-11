@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../models/Users");
-const Content = require("../models/Shop");
+const Note = require("../models/Note");
 
 //Purpose: to allow admin to perform CRUD Ops on to the website via
 //         secured route
@@ -15,9 +15,9 @@ const Content = require("../models/Shop");
 
 router.get("/", async (req, res) => {
   try {
-    //contents represents all the items that are stored in the database
-    const contents = await Content.find({}).sort({ date: -1 });
-    res.json(contents);
+    //notes represents all the items that are stored in the database
+    const notes = await Note.find({}).sort({ date: -1 });
+    res.json(notes);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -34,22 +34,10 @@ router.post(
     auth,
     //uses auth verify if content is valid
     [
-      check("name", "Name is required")
-        .not()
-        .isEmpty(),
-      check("colour", "Colour is required")
-        .not()
-        .isEmpty(),
-      check("price", "Price is required")
-        .not()
-        .isEmpty(),
-      check("size", "Size is required")
-        .not()
-        .isEmpty(),
-      check("quantity", "Quantity is required")
-        .not()
-        .isEmpty()
-    ]
+      check("title", "Title is required").not().isEmpty(),
+      check("body", "Body is required").not().isEmpty(),
+      check("label", "Label is required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     // requesting the data that is sent to the route & validation
@@ -58,21 +46,19 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     //input taken
-    const { name, colour, price, size, quantity } = req.body;
+    const { title, body, label } = req.body;
     try {
-      const newContent = new Content({
-        name,
-        colour,
-        price,
-        size,
-        quantity,
-        user: req.user.id
+      const newNote = new Note({
+        title,
+        body,
+        label,
+        user: req.user.id,
       });
 
       //new db entry created and saved
-      const content = await newContent.save();
+      const note = await newNote.save();
 
-      res.json(content);
+      res.json(note);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
@@ -81,33 +67,32 @@ router.post(
 );
 
 // @router  PUT api/shop/:id
-// @desc    Update  content
+// @desc    Update  note
 // @access  Private (only for admin users)
 
 router.put("/:id", auth, async (req, res) => {
   const { name, colour, price, size, quantity } = req.body;
 
-  // build content object
-  const contentFields = {};
-  if (name) contentFields.name = name;
-  if (colour) contentFields.colour = colour;
-  if (price) contentFields.price = price;
-  if (size) contentFields.size = size;
-  if (quantity) contentFields.quantity = quantity;
+  // build note object
+  const noteFields = {};
+
+  if (title) noteFields.title = title;
+  if (body) noteFields.body = body;
+  if (label) noteFields.label = label;
 
   try {
-    let content = await Content.findById(req.params.id);
-    if (!content) return res.status(404).json({ msg: "Content not found" });
+    let note = await Note.findById(req.params.id);
+    if (!note) return res.status(404).json({ msg: "Note not found" });
 
     //update function
-    content = await Content.findByIdAndUpdate(
+    note = await Note.findByIdAndUpdate(
       req.params.id,
-      { $set: contentFields },
+      { $set: noteFields },
       //if contact doesn't exist make a new one
       { new: true }
     );
 
-    res.json(content);
+    res.json(note);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -115,18 +100,18 @@ router.put("/:id", auth, async (req, res) => {
 });
 
 // @router  Delete api/shop/:id
-// @desc    Get all content
+// @desc    Get all note
 // @access  Private
 
 router.delete("/:id", auth, async (req, res) => {
   try {
-    let content = await Content.findById(req.params.id);
+    let note = await Note.findById(req.params.id);
 
-    if (!content) return res.status(404).json({ msg: "Content not found" });
+    if (!note) return res.status(404).json({ msg: "Note not found" });
 
-    await Content.findByIdAndRemove(req.params.id);
+    await Note.findByIdAndRemove(req.params.id);
 
-    res.json({ msg: "Content Removed" });
+    res.json({ msg: "Note Removed" });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

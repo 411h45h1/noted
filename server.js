@@ -12,7 +12,7 @@ app.use(express.json({ extended: false }));
 
 // Define Routes
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/shop", require("./routes/shop"));
+app.use("/api/notes", require("./routes/notes"));
 app.use("/api/users", require("./routes/users"));
 
 // serve react in prod
