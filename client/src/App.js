@@ -2,8 +2,7 @@ import React from "react";
 import "./App.css";
 
 //context
-import AuthState from "./context/auth/AuthState";
-import AppState from "./context/app/AppState";
+import { AuthState, AppState } from "./context";
 
 const App = () => {
   return (
