@@ -21,7 +21,7 @@ export const addNote = async (uid, title, content, importance) => {
     title,
     content,
     importance,
-    date: moment().format("MMM Do YYYY"),
+    date: moment().format("llll"),
   });
 
   return req;

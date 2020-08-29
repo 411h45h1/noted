@@ -22,7 +22,12 @@ const AppState = (props) => {
   const { loggedIn, uid, notesLoaded } = state;
 
   const loadNotes = () =>
-    getNotes(uid).then((res) => dispatch({ type: "LOAD_NOTES", payload: res }));
+    getNotes(uid).then((res) =>
+      dispatch({
+        type: "LOAD_NOTES",
+        payload: res.sort((a, b) => (a.nid < b.nid ? 1 : -1)),
+      })
+    );
 
   const onNotes = useCallback(loadNotes, [uid]);
 
