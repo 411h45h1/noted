@@ -4,7 +4,7 @@ export default (state, { type, payload }) => {
       return {
         ...state,
         loggedIn: true,
-        userData: payload,
+        uid: payload.uid,
       };
 
     case "NOT_LOGGED_IN":
@@ -17,7 +17,7 @@ export default (state, { type, payload }) => {
       return {
         ...state,
         loggedIn: false,
-        userData: null,
+        uid: null,
         notes: null,
         notesLoaded: false,
       };

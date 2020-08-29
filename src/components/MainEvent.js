@@ -9,10 +9,9 @@ const MainEvent = () => {
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
   const state = useContext(AppContext);
-  const { userData, loadNotes, notes } = state;
+  const { uid, loadNotes, notes } = state;
 
   let importance = radioValue;
-  let uid = userData.uid;
 
   const handleSubmit = async () =>
     await addNote(uid, title, content, importance).then(() => loadNotes());

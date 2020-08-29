@@ -17,6 +17,7 @@ export const addNote = async (uid, title, content, importance) => {
   const collection = db.collection(`User Notes: ${uid}`);
 
   const req = await collection.add({
+    nid: Date.now(),
     title,
     content,
     importance,

@@ -14,26 +14,25 @@ import { getNotes } from "../api/notes";
 const AppState = (props) => {
   const initialState = {
     loggedIn: null,
-    userData: null,
+    uid: null,
     notes: null,
     notesLoaded: false,
   };
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const { loggedIn, userData, notesLoaded } = state;
+  const { loggedIn, uid, notesLoaded } = state;
 
-  const loadNotes = useCallback(() => {
-    getNotes(userData.uid).then((res) =>
-      dispatch({ type: "LOAD_NOTES", payload: res })
-    );
-  }, [userData.uid]);
+  const loadNotes = () =>
+    getNotes(uid).then((res) => dispatch({ type: "LOAD_NOTES", payload: res }));
+
+  const onNotes = useCallback(loadNotes, [uid]);
 
   useEffect(() => {
     authCheck();
 
     if (!notesLoaded && loggedIn) {
-      loadNotes();
+      onNotes();
     }
-  }, [loggedIn, loadNotes, notesLoaded]);
+  }, [loggedIn, onNotes, notesLoaded]);
 
   const authCheck = () =>
     firebase.auth().onAuthStateChanged((user) =>
@@ -56,8 +55,8 @@ const AppState = (props) => {
   return (
     <AppContext.Provider
       value={{
+        uid: state.uid,
         loggedIn: state.loggedIn,
-        userData: state.userData,
         notes: state.notes,
         notesLoaded: state.notesLoaded,
         loadNotes,
