@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useCallback, useEffect } from "react";
 
 //context
 import AppContext from "./appContext";
@@ -10,7 +10,6 @@ import "firebase/auth";
 
 import { logoutUser } from "../api/auth";
 import { getNotes } from "../api/notes";
-import moment from "moment";
 
 const AppState = (props) => {
   const initialState = {
@@ -20,7 +19,13 @@ const AppState = (props) => {
     notesLoaded: false,
   };
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const { loggedIn, userData, notes, notesLoaded } = state;
+  const { loggedIn, userData, notesLoaded } = state;
+
+  const loadNotes = useCallback(() => {
+    getNotes(userData.uid).then((res) =>
+      dispatch({ type: "LOAD_NOTES", payload: res })
+    );
+  }, [userData.uid]);
 
   useEffect(() => {
     authCheck();
@@ -28,7 +33,7 @@ const AppState = (props) => {
     if (!notesLoaded && loggedIn) {
       loadNotes();
     }
-  }, [loggedIn, notesLoaded]);
+  }, [loggedIn, loadNotes, notesLoaded]);
 
   const authCheck = () =>
     firebase.auth().onAuthStateChanged((user) =>
@@ -47,11 +52,6 @@ const AppState = (props) => {
     logoutUser();
     dispatch({ type: "LOG_OUT" });
   };
-
-  const loadNotes = () =>
-    getNotes(userData.uid).then((res) =>
-      dispatch({ type: "LOAD_NOTES", payload: res })
-    );
 
   return (
     <AppContext.Provider

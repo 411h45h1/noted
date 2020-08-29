@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Header, Button } from "semantic-ui-react";
+import { Grid, Button } from "semantic-ui-react";
 import Login from "./onboard/Login";
 import Register from "./onboard/Register";
 

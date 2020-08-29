@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Grid, Segment, Card, Label } from "semantic-ui-react";
+import React, { useContext } from "react";
+import { Segment, Card, Label } from "semantic-ui-react";
 import AppContext from "../../context/appContext";
 
 const NoteItem = () => {
   const state = useContext(AppContext);
-  const { userData, notes } = state;
+  const { notes } = state;
 
   return (
     <Segment

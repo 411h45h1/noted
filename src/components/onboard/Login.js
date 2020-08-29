@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [setError] = useState("");
 
   let history = useHistory();
 
