@@ -14,11 +14,12 @@ const NoteItem = () => {
         width: "100%",
         maxHeight: "65vh",
         overflowY: "scroll",
+        backgroundColor: "#FDD543",
       }}
     >
       {notes.map((i, k) => {
         return (
-          <Segment key={k}>
+          <Segment raised key={k}>
             <Label
               color={
                 i.importance === "Lv.1"

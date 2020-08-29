@@ -27,12 +27,14 @@ const OnBoard = () => {
       <Grid.Column floated="right" width={4}>
         <Button
           toggle
+          color="black"
           active={toggleLogin}
           content="Login"
           onClick={() => handleLogin()}
         />
         <Button
           toggle
+          color="black"
           active={toggleRegister}
           content="Register"
           onClick={() => handleRegister()}

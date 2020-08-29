@@ -60,6 +60,7 @@ const AppState = (props) => {
         userData: state.userData,
         notes: state.notes,
         notesLoaded: state.notesLoaded,
+        loadNotes,
         onLogout,
       }}
     >

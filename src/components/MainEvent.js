@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Grid, Segment, Card, Form } from "semantic-ui-react";
-import { addNote, getNotes } from "../api/notes";
+import React, { useState, useContext } from "react";
+import { Grid, Segment, Form } from "semantic-ui-react";
+import { addNote } from "../api/notes";
 import AppContext from "../context/appContext";
 import NoteItem from "./app/NoteItem";
 
@@ -9,13 +9,13 @@ const MainEvent = () => {
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
   const state = useContext(AppContext);
-  const { userData, notes } = state;
+  const { userData, loadNotes, notes } = state;
 
   let importance = radioValue;
   let uid = userData.uid;
 
   const handleSubmit = async () =>
-    await addNote(uid, title, content, importance);
+    await addNote(uid, title, content, importance).then(() => loadNotes());
 
   return (
     <div>
@@ -24,7 +24,7 @@ const MainEvent = () => {
       </Grid>
       <Grid>
         <Grid.Column width={10}>
-          <Segment>
+          <Segment raised style={{ backgroundColor: "#DDBA3B" }}>
             <Form>
               <Form.Input
                 label="Title"
@@ -65,7 +65,9 @@ const MainEvent = () => {
                 placeholder="Enter note data here"
                 onChange={(e, { value }) => setContent(value)}
               />
-              <Form.Button onClick={() => handleSubmit()}>Submit</Form.Button>
+              <Form.Button color="black" onClick={() => handleSubmit()}>
+                Submit
+              </Form.Button>
             </Form>
           </Segment>
         </Grid.Column>
