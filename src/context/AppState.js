@@ -8,6 +8,8 @@ import appReducer from "./appReducer";
 import firebase from "../firebase";
 import "firebase/auth";
 
+import { logoutUser } from "../api/auth";
+
 const AppState = (props) => {
   const initialState = {
     loggedIn: null,
@@ -16,34 +18,30 @@ const AppState = (props) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const { loggedIn } = state;
   useEffect(() => {
-    if (!loggedIn) {
-      return authCheck();
-    }
+    authCheck();
   }, [loggedIn]);
 
   const authCheck = () =>
-    firebase
-      .auth()
-      .onAuthStateChanged((user) =>
-        user
-          ? dispatch({ type: "LOGGED_IN", payload: user })
-          : dispatch({ type: "NOT_LOGGED_IN" })
-      );
+    firebase.auth().onAuthStateChanged((user) =>
+      user
+        ? dispatch({
+            type: "LOGGED_IN",
+            payload: {
+              uid: user.uid,
+              username: firebase.auth().currentUser.displayName,
+            },
+          })
+        : dispatch({ type: "NOT_LOGGED_IN" })
+    );
 
-  // useEffect(() => {
-  //   return !mostViewed
-  //     ? onMostViewed()
-  //     : !mostEmailed
-  //     ? onMostEmailed()
-  //     : !mostSocialMediaShared
-  //     ? onMostSocial()
-  //     : undefined;
-  // }, [mostViewed, mostEmailed, mostSocialMediaShared]);
+  const onLogout = () => logoutUser() && dispatch({ type: "NOT_LOGGED_IN" });
 
+  console.log(state);
   return (
     <AppContext.Provider
       value={{
         loggedIn: state.loggedIn,
+        onLogout,
       }}
     >
       {props.children}

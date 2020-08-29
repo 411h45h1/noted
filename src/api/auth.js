@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "../firebase";
 import "firebase/auth";
 
 export const logoutUser = () => {
@@ -10,14 +10,14 @@ export const signInUser = async ({ name, email, password }) => {
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((cred) => {
-        return firebase.firestore().collection("users").doc(cred.user.uid).set({
+      .then((cred) =>
+        firebase.firestore().collection("users").doc(cred.user.uid).set({
           name: name,
           email: email,
-        });
-      });
+        })
+      );
 
-    await firebase.auth().currentUser.updateProfile({
+    firebase.auth().currentUser.updateProfile({
       displayName: name,
     });
 
