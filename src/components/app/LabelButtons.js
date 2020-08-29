@@ -9,15 +9,15 @@ const LabelButtons = () => {
     <>
       <Label
         as="a"
+        color="black"
         attached="top right"
         content="Log Out"
-        color="black"
         onClick={() => onLogout()}
       />
       <Label
         as="a"
         color="black"
-        attached="bottom right"
+        attached="bottom left"
         content="Click here for the repository"
         href="https://github.com/AhmedAlihashi/noted"
         target="_blank"
