@@ -17,3 +17,10 @@
   min-height: 90vh;
   min-width: 90vw;
 }
+
+#title {
+  font-size: 5rem;
+  color: black;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

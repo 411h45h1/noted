@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
-  Link,
   Route,
   Switch,
   Redirect,
-  withRouter,
 } from "react-router-dom";
 import "./App.css";
 import { Segment } from "semantic-ui-react";
 import AppContext from "./context/appContext";
+import LogoutButton from "./components/app/LogoutButton";
 
 import MainEvent from "./components/MainEvent";
 import OnBoard from "./components/OnBoard";
@@ -29,6 +28,8 @@ const App = () => {
             inverted
             style={{ backgroundColor: loggedIn ? mainColor : onboardColors }}
           >
+            {loggedIn && <LogoutButton />}
+
             <Switch>
               <Route exact path="/">
                 {loggedIn ? <MainEvent /> : <Redirect to="/login" />}
