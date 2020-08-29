@@ -5,7 +5,7 @@ import AppContext from "./appContext";
 import appReducer from "./appReducer";
 
 //firebase
-import firebase from "../firebase";
+import firebase from "firebase/app";
 import "firebase/auth";
 
 import { logoutUser } from "../api/auth";
@@ -36,7 +36,6 @@ const AppState = (props) => {
 
   const onLogout = () => logoutUser() && dispatch({ type: "NOT_LOGGED_IN" });
 
-  console.log(state);
   return (
     <AppContext.Provider
       value={{

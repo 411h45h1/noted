@@ -18,6 +18,10 @@
   min-width: 90vw;
 }
 
+.NoteInput {
+  min-height: 55vh;
+}
+
 #title {
   font-size: 5rem;
   color: black;
