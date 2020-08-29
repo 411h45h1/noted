@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
   Redirect,
@@ -20,7 +20,7 @@ const App = () => {
   const mainColor = "#FDD543";
 
   return (
-    <Router>
+    <Router basename="/">
       <div className="App">
         <div className="App-background">
           <Segment
