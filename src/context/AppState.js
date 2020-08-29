@@ -39,6 +39,7 @@ const AppState = (props) => {
   return (
     <AppContext.Provider
       value={{
+        userData: state.userData,
         loggedIn: state.loggedIn,
         onLogout,
       }}

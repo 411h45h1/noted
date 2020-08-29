@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Grid, Segment, Form } from "semantic-ui-react";
+import { addNote } from "../api/notes";
+import AppContext from "../context/appContext";
 
 const MainEvent = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
+  const state = useContext(AppContext);
+  const { userData } = state;
+  let importance = radioValue;
+  let uid = userData.uid;
+
+  const handleSubmit = async () =>
+    await addNote(uid, title, content, importance);
 
   return (
     <div>
@@ -54,7 +63,7 @@ const MainEvent = () => {
                 placeholder="Enter note data here"
                 onChange={(e, { value }) => setContent(value)}
               />
-              <Form.Button>Submit</Form.Button>
+              <Form.Button onClick={() => handleSubmit()}>Submit</Form.Button>
             </Form>
           </Segment>
         </Grid.Column>
