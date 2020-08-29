@@ -2,25 +2,20 @@ import firebase from "../firebase";
 import "firebase/firestore";
 
 const db = firebase.firestore();
-const collection = db.collection("notes");
 
 export const getNotes = async (uid) => {
-  const notes = await collection
-    .doc(uid)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const res = doc.data();
-        return res;
-      } else {
-        console.log("Error getting doc @ getNotes()");
-      }
-    });
-  return notes;
+  const collection = db.collection(`User Notes: ${uid}`);
+
+  const notes = await collection.get();
+  return notes.docs.map((doc) => {
+    return { nid: doc.id, ...doc.data() };
+  });
 };
 
 export const addNote = async (uid, title, content, importance) => {
-  const req = await collection.doc(uid).set({
+  const collection = db.collection(`User Notes: ${uid}`);
+
+  const req = await collection.add({
     title,
     content,
     importance,

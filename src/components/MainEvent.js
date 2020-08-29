@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Grid, Segment, Form } from "semantic-ui-react";
-import { addNote } from "../api/notes";
+import { addNote, getNotes } from "../api/notes";
 import AppContext from "../context/appContext";
 
 const MainEvent = () => {
@@ -8,12 +8,18 @@ const MainEvent = () => {
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
   const state = useContext(AppContext);
+
   const { userData } = state;
+
   let importance = radioValue;
   let uid = userData.uid;
 
   const handleSubmit = async () =>
     await addNote(uid, title, content, importance);
+
+  useEffect(() => {
+    getNotes(uid).then((res) => console.log(res));
+  }, [uid]);
 
   return (
     <div>
