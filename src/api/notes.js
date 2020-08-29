@@ -1,5 +1,6 @@
 import firebase from "../firebase";
 import "firebase/firestore";
+import moment from "moment";
 
 const db = firebase.firestore();
 
@@ -19,6 +20,7 @@ export const addNote = async (uid, title, content, importance) => {
     title,
     content,
     importance,
+    date: moment().format("MMM Do YYYY"),
   });
 
   return req;

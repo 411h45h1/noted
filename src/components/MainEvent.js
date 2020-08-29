@@ -1,25 +1,21 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Grid, Segment, Form } from "semantic-ui-react";
+import { Grid, Segment, Card, Form } from "semantic-ui-react";
 import { addNote, getNotes } from "../api/notes";
 import AppContext from "../context/appContext";
+import NoteItem from "./app/NoteItem";
 
 const MainEvent = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
   const state = useContext(AppContext);
-
-  const { userData } = state;
+  const { userData, notes } = state;
 
   let importance = radioValue;
   let uid = userData.uid;
 
   const handleSubmit = async () =>
     await addNote(uid, title, content, importance);
-
-  useEffect(() => {
-    getNotes(uid).then((res) => console.log(res));
-  }, [uid]);
 
   return (
     <div>
@@ -73,9 +69,7 @@ const MainEvent = () => {
             </Form>
           </Segment>
         </Grid.Column>
-        <Grid.Column width={6}>
-          <Segment className="NoteInput"></Segment>
-        </Grid.Column>
+        <Grid.Column width={6}>{notes && <NoteItem />}</Grid.Column>
       </Grid>
     </div>
   );
