@@ -19,12 +19,27 @@ const NoteItem = () => {
       {notes.map((i, k) => {
         return (
           <Segment key={k}>
-            {i.date && <Label attached="top left" content={i.date} />}
+            <Label
+              color={
+                i.importance === "Lv.1"
+                  ? "grey"
+                  : i.importance === "Lv.2"
+                  ? "blue"
+                  : i.importance === "Lv.3"
+                  ? "orange"
+                  : i.importance === "Lv.4"
+                  ? "red"
+                  : null
+              }
+              attached="top right"
+              content={i.importance}
+            />
+            <Label size="tiny" attached="bottom left" content={i.date} />
+
             <Card
-              link
               header={i.title}
-              meta={i.importance}
               description={i.content}
+              style={{ marginTop: 20, marginBottom: 20 }}
             />
           </Segment>
         );

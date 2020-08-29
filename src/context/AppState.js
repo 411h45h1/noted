@@ -43,7 +43,10 @@ const AppState = (props) => {
         : dispatch({ type: "NOT_LOGGED_IN" })
     );
 
-  const onLogout = () => logoutUser() && dispatch({ type: "NOT_LOGGED_IN" });
+  const onLogout = () => {
+    logoutUser();
+    dispatch({ type: "LOG_OUT" });
+  };
 
   const loadNotes = () =>
     getNotes(userData.uid).then((res) =>
@@ -53,8 +56,8 @@ const AppState = (props) => {
   return (
     <AppContext.Provider
       value={{
-        userData: state.userData,
         loggedIn: state.loggedIn,
+        userData: state.userData,
         notes: state.notes,
         notesLoaded: state.notesLoaded,
         onLogout,

@@ -13,6 +13,15 @@ export default (state, { type, payload }) => {
         loggedIn: false,
       };
 
+    case "LOG_OUT":
+      return {
+        ...state,
+        loggedIn: false,
+        userData: null,
+        notes: null,
+        notesLoaded: false,
+      };
+
     case "LOAD_NOTES":
       return {
         ...state,
