@@ -61,7 +61,7 @@ const MainEvent = () => {
               <Form.TextArea
                 label="Content"
                 value={content}
-                placeholder="Enter note data here"
+                placeholder="Enter your note here"
                 onChange={(e, { value }) => setContent(value)}
               />
               <Form.Button color="black" onClick={() => handleSubmit()}>

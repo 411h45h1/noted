@@ -18,6 +18,7 @@ const AppState = (props) => {
     notes: null,
     notesLoaded: false,
   };
+
   const [state, dispatch] = useReducer(appReducer, initialState);
   const { loggedIn, uid, notesLoaded } = state;
 

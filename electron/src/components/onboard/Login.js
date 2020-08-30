@@ -4,6 +4,7 @@ import { emailValidator, passwordValidator } from "../../core/utils";
 import { loginUser } from "../../api/auth";
 import Input from "../reusable/Input";
 import { createBrowserHistory } from "history";
+import { setStorage } from "../../core/coldStore";
 
 const history = createBrowserHistory({
   basename: window.location.pathname,
@@ -12,7 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [loading, setLoading] = useState(false);
-  const [setError] = useState("");
+  const [error, setError] = useState();
 
   const handleLogin = async () => {
     const emailError = emailValidator(email.value);
@@ -33,17 +34,33 @@ const Login = () => {
     if (response.error) {
       setError(response.error);
       setLoading(false);
+    } else {
+      setStorage("email", email.value);
+      setStorage("password", password.value);
+      history.push("/");
     }
-    history.push("/");
   };
+
+  const clearInputs = () => {
+    setEmail({ value: "", error: "" });
+    setPassword({ value: "", error: "" });
+    setTimeout(() => setError(null), 500);
+  };
+
+  if (error && email.value !== "" && password.value !== "") {
+    clearInputs();
+  }
+
   return (
     <Segment>
       <Header as="h2" content="Login" />
       <Grid>
         <Grid.Row>
           <Grid.Column>
+            {error && <p>{error}</p>}
             <Input
               type="email"
+              value={email.value}
               placeholder="Email"
               onChange={(e, { value }) => setEmail({ value: value, error: "" })}
             />
@@ -53,6 +70,7 @@ const Login = () => {
           <Grid.Column>
             <Input
               type="password"
+              value={password.value}
               placeholder="Password"
               onChange={(e, { value }) =>
                 setPassword({ value: value, error: "" })

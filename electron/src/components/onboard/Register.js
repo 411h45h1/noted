@@ -2,38 +2,26 @@ import React, { useState } from "react";
 import { Grid, Header, Button, Segment } from "semantic-ui-react";
 import { signInUser } from "../../api/auth";
 import Input from "../reusable/Input";
-import {
-  nameValidator,
-  emailValidator,
-  passwordValidator,
-} from "../../core/utils";
+import { emailValidator, passwordValidator } from "../../core/utils";
 
 const Register = () => {
-  const [name, setName] = useState({ value: "", error: "" });
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [loading, setLoading] = useState(false);
-
-  const [setError] = useState("");
+  const [error, setError] = useState();
 
   const handleSignUp = async () => {
-    if (loading) return;
-
-    const nameError = nameValidator(name.value);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
 
-    if (emailError || passwordError || nameError) {
-      setName({ ...name, error: nameError });
+    if (emailError || passwordError) {
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
-      return;
     }
 
     setLoading(true);
 
     const response = await signInUser({
-      name: name.value,
       email: email.value,
       password: password.value,
     });
@@ -44,24 +32,28 @@ const Register = () => {
     }
   };
 
+  const clearInputs = () => {
+    setEmail({ value: "", error: "" });
+    setPassword({ value: "", error: "" });
+    setTimeout(() => setError(null), 500);
+  };
+
+  if (error && email.value !== "" && password.value !== "") {
+    clearInputs();
+  }
+
   return (
     <Segment>
       <Header as="h2" content="Register" />
       <Grid>
         <Grid.Row>
           <Grid.Column>
+            {error && <p>{error}</p>}
+
             <Input
-              type="text"
-              placeholder="Name"
-              onChange={(e, { value }) => setName({ value: value, error: "" })}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Input
-              type="text"
+              type="email"
               placeholder="Email"
+              value={email.value}
               onChange={(e, { value }) => setEmail({ value: value, error: "" })}
             />
           </Grid.Column>
@@ -69,8 +61,9 @@ const Register = () => {
         <Grid.Row>
           <Grid.Column>
             <Input
-              type="text"
+              type="password"
               placeholder="Password"
+              value={password.value}
               onChange={(e, { value }) =>
                 setPassword({ value: value, error: "" })
               }
@@ -82,7 +75,9 @@ const Register = () => {
             <Button
               loading={loading}
               mode="contained"
-              onClick={() => handleSignUp()}
+              onClick={() => {
+                handleSignUp();
+              }}
             >
               Sign Up
             </Button>
