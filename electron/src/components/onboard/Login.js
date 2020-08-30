@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Header, Button, Segment } from "semantic-ui-react";
 import { emailValidator, passwordValidator } from "../../core/utils";
 import { loginUser } from "../../api/auth";
 import Input from "../reusable/Input";
 import { createBrowserHistory } from "history";
-import { setStorage } from "../../core/coldStore";
+import { setStorage, getStorage } from "../../core/coldStore";
 
 const history = createBrowserHistory({
   basename: window.location.pathname,
@@ -14,6 +14,13 @@ const Login = () => {
   const [password, setPassword] = useState({ value: "", error: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+
+  useEffect(() => {
+    if (getStorage("email") && getStorage("password")) {
+      setEmail({ value: getStorage("email"), error: "" });
+      setPassword({ value: getStorage("password"), error: "" });
+    }
+  }, []);
 
   const handleLogin = async () => {
     const emailError = emailValidator(email.value);
