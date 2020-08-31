@@ -11,6 +11,11 @@
 # production
 /build
 
+# firebase
+.firebase
+.firebaserc
+firebase.json
+
 # electron
 /electron/dist
 /electron/node_modules

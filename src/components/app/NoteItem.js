@@ -26,21 +26,23 @@ const NoteItem = () => {
               backgroundColor: "#C9BF77",
             }}
           >
-            <Label
-              color={
-                i.importance === "Lv.1"
-                  ? "grey"
-                  : i.importance === "Lv.2"
-                  ? "blue"
-                  : i.importance === "Lv.3"
-                  ? "orange"
-                  : i.importance === "Lv.4"
-                  ? "red"
-                  : null
-              }
-              attached="top right"
-              content={i.importance}
-            />
+            {i.importance && (
+              <Label
+                color={
+                  i.importance === "Lv.1"
+                    ? "grey"
+                    : i.importance === "Lv.2"
+                    ? "blue"
+                    : i.importance === "Lv.3"
+                    ? "orange"
+                    : i.importance === "Lv.4"
+                    ? "red"
+                    : null
+                }
+                attached="top right"
+                content={i.importance}
+              />
+            )}
             <Label
               as="a"
               size="tiny"
