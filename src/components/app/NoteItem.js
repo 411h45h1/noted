@@ -4,7 +4,7 @@ import AppContext from "../../context/appContext";
 
 const NoteItem = () => {
   const state = useContext(AppContext);
-  const { notes } = state;
+  const { uid, notes, removeNote } = state;
 
   return (
     <Segment
@@ -40,6 +40,16 @@ const NoteItem = () => {
               }
               attached="top right"
               content={i.importance}
+            />
+            <Label
+              as="a"
+              size="tiny"
+              attached="top left"
+              content="❌"
+              onClick={() => removeNote(uid, i.nid)}
+              style={{
+                backgroundColor: "#C9BF77",
+              }}
             />
             <Label
               size="tiny"
