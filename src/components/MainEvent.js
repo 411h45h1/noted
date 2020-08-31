@@ -15,31 +15,29 @@ const MainEvent = () => {
         <p id="title">Noted</p>
       </Grid>
       <Grid>
-        <Grid.Row columns="equal">
+        <Grid.Row>
           {/* @ mobile */}
           <Grid.Column as={Media} at="mobile" width={16}>
             <ResponsiveInput contentRows={1} />
           </Grid.Column>
 
           <Grid.Column as={Media} at="mobile" width={16}>
-            {notes && (
-              <Segment
-                fluid
-                inverted
-                style={{
-                  marginTop: 10,
-                  marginBottom: 20,
-                  minHeight: "20vh",
-                  maxHeight: "25vh",
-                  overflowY: "scroll",
-                  backgroundColor: "#FDD543",
-                }}
-              >
-                <Grid columns={1}>
-                  <NoteItem />
-                </Grid>{" "}
-              </Segment>
-            )}
+            <Segment
+              fluid
+              inverted
+              style={{
+                marginTop: 10,
+                marginBottom: 20,
+                minHeight: "20vh",
+                maxHeight: "25vh",
+                overflowY: "scroll",
+                backgroundColor: "#FDD543",
+              }}
+            >
+              <Grid columns={1}>
+                <NoteItem />
+              </Grid>
+            </Segment>
           </Grid.Column>
 
           {/* @ tablet */}
@@ -48,46 +46,42 @@ const MainEvent = () => {
             <ResponsiveInput contentRows={3} />
           </Grid.Column>
 
-          <Grid.Column as={Media} at="tablet">
-            {notes && (
-              <Segment
-                fluid
-                inverted
-                style={{
-                  maxHeight: "65vh",
-                  overflowY: "scroll",
-                  backgroundColor: "#FDD543",
-                }}
-              >
-                <Grid columns={1}>
-                  <NoteItem />
-                </Grid>{" "}
-              </Segment>
-            )}
+          <Grid.Column as={Media} at="tablet" width={7}>
+            <Segment
+              fluid
+              inverted
+              style={{
+                maxHeight: "65vh",
+                overflowY: "scroll",
+                backgroundColor: "#FDD543",
+              }}
+            >
+              <Grid columns={1}>
+                <NoteItem />
+              </Grid>
+            </Segment>
           </Grid.Column>
 
           {/* @ computer */}
 
-          <Grid.Column as={Media} at="computer" width={9}>
+          <Grid.Column as={Media} at="computer" width={6}>
             <ResponsiveInput contentRows={3} />
           </Grid.Column>
 
-          <Grid.Column as={Media} at="computer">
-            {notes && (
-              <Segment
-                fluid
-                inverted
-                style={{
-                  maxHeight: "65vh",
-                  overflowY: "scroll",
-                  backgroundColor: "#FDD543",
-                }}
-              >
-                <Grid columns={2}>
-                  <NoteItem />
-                </Grid>{" "}
-              </Segment>
-            )}
+          <Grid.Column as={Media} at="computer" width={10}>
+            <Segment
+              fluid
+              inverted
+              style={{
+                maxHeight: "65vh",
+                overflowY: "scroll",
+                backgroundColor: "#FDD543",
+              }}
+            >
+              <Grid columns={2}>
+                <NoteItem />
+              </Grid>
+            </Segment>
           </Grid.Column>
 
           {/* @ largeScreen */}
@@ -96,22 +90,20 @@ const MainEvent = () => {
             <ResponsiveInput contentRows={3} />
           </Grid.Column>
 
-          <Grid.Column as={Media} at="largeScreen">
-            {notes && (
-              <Segment
-                fluid
-                inverted
-                style={{
-                  maxHeight: "65vh",
-                  overflowY: "scroll",
-                  backgroundColor: "#FDD543",
-                }}
-              >
-                <Grid columns={3}>
-                  <NoteItem />
-                </Grid>{" "}
-              </Segment>
-            )}
+          <Grid.Column as={Media} at="largeScreen" width={7}>
+            <Segment
+              fluid
+              inverted
+              style={{
+                maxHeight: "65vh",
+                overflowY: "scroll",
+                backgroundColor: "#FDD543",
+              }}
+            >
+              <Grid columns={3}>
+                <NoteItem />
+              </Grid>
+            </Segment>
           </Grid.Column>
 
           {/* @ greater */}
@@ -120,22 +112,20 @@ const MainEvent = () => {
             <ResponsiveInput contentRows={5} />
           </Grid.Column>
 
-          <Grid.Column as={Media} greaterThan="largeScreen">
-            {notes && (
-              <Segment
-                fluid
-                inverted
-                style={{
-                  maxHeight: "65vh",
-                  overflowY: "scroll",
-                  backgroundColor: "#FDD543",
-                }}
-              >
-                <Grid columns={4}>
-                  <NoteItem />
-                </Grid>
-              </Segment>
-            )}
+          <Grid.Column as={Media} greaterThan="largeScreen" width={9}>
+            <Segment
+              fluid
+              inverted
+              style={{
+                maxHeight: "65vh",
+                overflowY: "scroll",
+                backgroundColor: "#FDD543",
+              }}
+            >
+              <Grid columns={4}>
+                <NoteItem />
+              </Grid>
+            </Segment>
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -3,7 +3,7 @@ import { createMedia } from "@artsy/fresnel";
 const AppMedia = createMedia({
   breakpoints: {
     mobile: 320,
-    tablet: 530,
+    tablet: 768,
     computer: 992,
     largeScreen: 1400,
     widescreen: 1920,
