@@ -3,7 +3,7 @@ import { Segment, Form } from "semantic-ui-react";
 import { addNote } from "../../api/notes";
 import AppContext from "../../context/appContext";
 
-const ResponsiveInput = ({ contentRows }) => {
+const ResponsiveInput = ({ contentRows, size }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
@@ -17,7 +17,7 @@ const ResponsiveInput = ({ contentRows }) => {
 
   return (
     <Segment raised style={{ backgroundColor: "#DDBA3B" }}>
-      <Form>
+      <Form size={size}>
         <Form.Input
           label="Title"
           value={title}

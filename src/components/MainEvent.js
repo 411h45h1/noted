@@ -18,7 +18,7 @@ const MainEvent = () => {
         <Grid.Row>
           {/* @ mobile */}
           <Grid.Column as={Media} at="mobile" width={16}>
-            <ResponsiveInput contentRows={1} />
+            <ResponsiveInput size={"large"} contentRows={1} />
           </Grid.Column>
 
           <Grid.Column as={Media} at="mobile" width={16}>
@@ -43,7 +43,7 @@ const MainEvent = () => {
           {/* @ tablet */}
 
           <Grid.Column as={Media} at="tablet" width={9}>
-            <ResponsiveInput contentRows={3} />
+            <ResponsiveInput size={"large"} contentRows={3} />
           </Grid.Column>
 
           <Grid.Column as={Media} at="tablet" width={7}>
@@ -64,11 +64,11 @@ const MainEvent = () => {
 
           {/* @ computer */}
 
-          <Grid.Column as={Media} at="computer" width={6}>
-            <ResponsiveInput contentRows={3} />
+          <Grid.Column as={Media} at="computer" width={7}>
+            <ResponsiveInput size={"large"} contentRows={3} />
           </Grid.Column>
 
-          <Grid.Column as={Media} at="computer" width={10}>
+          <Grid.Column as={Media} at="computer" width={9}>
             <Segment
               fluid
               inverted
@@ -86,11 +86,11 @@ const MainEvent = () => {
 
           {/* @ largeScreen */}
 
-          <Grid.Column as={Media} at="largeScreen" width={9}>
-            <ResponsiveInput contentRows={3} />
+          <Grid.Column as={Media} at="largeScreen" width={6}>
+            <ResponsiveInput size={"big"} contentRows={3} />
           </Grid.Column>
 
-          <Grid.Column as={Media} at="largeScreen" width={7}>
+          <Grid.Column as={Media} at="largeScreen" width={9}>
             <Segment
               fluid
               inverted
@@ -108,11 +108,11 @@ const MainEvent = () => {
 
           {/* @ greater */}
 
-          <Grid.Column as={Media} greaterThan="largeScreen" width={7}>
-            <ResponsiveInput contentRows={5} />
+          <Grid.Column as={Media} greaterThan="largeScreen" width={6}>
+            <ResponsiveInput size={"big"} contentRows={5} />
           </Grid.Column>
 
-          <Grid.Column as={Media} greaterThan="largeScreen" width={9}>
+          <Grid.Column as={Media} greaterThan="largeScreen" width={10}>
             <Segment
               fluid
               inverted
