@@ -1,14 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Media } from "../core/media";
 import { Grid, Segment } from "semantic-ui-react";
-import AppContext from "../context/appContext";
 import NoteItem from "./app/NoteItem";
 import { ResponsiveInput } from "./responsive";
 
 const MainEvent = () => {
-  const state = useContext(AppContext);
-  const { notes } = state;
-
   return (
     <div>
       <Grid>
