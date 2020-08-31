@@ -9,7 +9,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 import { logoutUser } from "../api/auth";
-import { getNotes } from "../api/notes";
+import { getNotes, deleteNote } from "../api/notes";
 
 const AppState = (props) => {
   const initialState = {
@@ -58,6 +58,8 @@ const AppState = (props) => {
     dispatch({ type: "LOG_OUT" });
   };
 
+  const removeNote = (uid, nid) => deleteNote(uid, nid).then(() => onNotes());
+
   return (
     <AppContext.Provider
       value={{
@@ -67,6 +69,7 @@ const AppState = (props) => {
         notesLoaded: state.notesLoaded,
         loadNotes,
         onLogout,
+        removeNote,
       }}
     >
       {props.children}
