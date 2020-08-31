@@ -35,7 +35,9 @@ const MainEvent = () => {
                   backgroundColor: "#FDD543",
                 }}
               >
-                <NoteItem />
+                <Grid columns={1}>
+                  <NoteItem />
+                </Grid>{" "}
               </Segment>
             )}
           </Grid.Column>
@@ -57,18 +59,20 @@ const MainEvent = () => {
                   backgroundColor: "#FDD543",
                 }}
               >
-                <NoteItem />
+                <Grid columns={1}>
+                  <NoteItem />
+                </Grid>{" "}
               </Segment>
             )}
           </Grid.Column>
 
-          {/* @ greater */}
+          {/* @ computer */}
 
-          <Grid.Column as={Media} greaterThan="tablet" width={8}>
-            <ResponsiveInput contentRows={5} />
+          <Grid.Column as={Media} at="computer" width={9}>
+            <ResponsiveInput contentRows={3} />
           </Grid.Column>
 
-          <Grid.Column as={Media} greaterThan="tablet">
+          <Grid.Column as={Media} at="computer">
             {notes && (
               <Segment
                 fluid
@@ -79,7 +83,57 @@ const MainEvent = () => {
                   backgroundColor: "#FDD543",
                 }}
               >
-                <NoteItem />
+                <Grid columns={2}>
+                  <NoteItem />
+                </Grid>{" "}
+              </Segment>
+            )}
+          </Grid.Column>
+
+          {/* @ largeScreen */}
+
+          <Grid.Column as={Media} at="largeScreen" width={9}>
+            <ResponsiveInput contentRows={3} />
+          </Grid.Column>
+
+          <Grid.Column as={Media} at="largeScreen">
+            {notes && (
+              <Segment
+                fluid
+                inverted
+                style={{
+                  maxHeight: "65vh",
+                  overflowY: "scroll",
+                  backgroundColor: "#FDD543",
+                }}
+              >
+                <Grid columns={3}>
+                  <NoteItem />
+                </Grid>{" "}
+              </Segment>
+            )}
+          </Grid.Column>
+
+          {/* @ greater */}
+
+          <Grid.Column as={Media} greaterThan="largeScreen" width={7}>
+            <ResponsiveInput contentRows={5} />
+          </Grid.Column>
+
+          <Grid.Column as={Media} greaterThan="largeScreen">
+            {notes && (
+              <Segment
+                fluid
+                inverted
+                style={{
+                  maxHeight: "65vh",
+                  overflowY: "scroll",
+                  backgroundColor: "#FDD543",
+                }}
+              >
+                <Grid columns={4}>
+                  <NoteItem />
+                </Grid>
               </Segment>
             )}
           </Grid.Column>
