@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Media } from "../core/media";
-import { Grid, Segment, Form } from "semantic-ui-react";
+import { Grid, Segment } from "semantic-ui-react";
 import AppContext from "../context/appContext";
 import NoteItem from "./app/NoteItem";
 import { ResponsiveInput } from "./responsive";
