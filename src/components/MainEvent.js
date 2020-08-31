@@ -18,7 +18,7 @@ const MainEvent = () => {
         <Grid.Row columns="equal">
           {/* @ mobile */}
           <Grid.Column as={Media} at="mobile" width={16}>
-            <ResponsiveInput />
+            <ResponsiveInput contentRows={1} />
           </Grid.Column>
 
           <Grid.Column as={Media} at="mobile" width={16}>
@@ -29,7 +29,8 @@ const MainEvent = () => {
                 style={{
                   marginTop: 10,
                   marginBottom: 20,
-                  maxHeight: "35vh",
+                  minHeight: "20vh",
+                  maxHeight: "25vh",
                   overflowY: "scroll",
                   backgroundColor: "#FDD543",
                 }}
@@ -42,7 +43,7 @@ const MainEvent = () => {
           {/* @ tablet */}
 
           <Grid.Column as={Media} at="tablet" width={9}>
-            <ResponsiveInput />
+            <ResponsiveInput contentRows={3} />
           </Grid.Column>
 
           <Grid.Column as={Media} at="tablet">
@@ -64,7 +65,7 @@ const MainEvent = () => {
           {/* @ greater */}
 
           <Grid.Column as={Media} greaterThan="tablet" width={8}>
-            <ResponsiveInput />
+            <ResponsiveInput contentRows={5} />
           </Grid.Column>
 
           <Grid.Column as={Media} greaterThan="tablet">

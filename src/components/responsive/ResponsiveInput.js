@@ -3,7 +3,7 @@ import { Segment, Form } from "semantic-ui-react";
 import { addNote } from "../../api/notes";
 import AppContext from "../../context/appContext";
 
-const ResponsiveInput = (width) => {
+const ResponsiveInput = ({ contentRows }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [radioValue, setRadioValue] = useState(null);
@@ -52,9 +52,10 @@ const ResponsiveInput = (width) => {
           />
         </Form.Group>
         <Form.TextArea
+          rows={contentRows}
           label="Content"
           value={content}
-          placeholder="Enter note data here"
+          placeholder="Enter your note here"
           onChange={(e, { value }) => setContent(value)}
         />
         <Form.Button color="black" onClick={() => handleSubmit()}>
