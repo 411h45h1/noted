@@ -45,51 +45,48 @@ const Register = () => {
   };
 
   return (
-    <Segment>
-      <Header as="h2" content="Register" />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column>
-            <Input
-              type="text"
-              placeholder="Name"
-              onChange={(e, { value }) => setName({ value: value, error: "" })}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Input
-              type="text"
-              placeholder="Email"
-              onChange={(e, { value }) => setEmail({ value: value, error: "" })}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Input
-              type="text"
-              placeholder="Password"
-              onChange={(e, { value }) =>
-                setPassword({ value: value, error: "" })
-              }
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Button
-              loading={loading}
-              mode="contained"
-              onClick={() => handleSignUp()}
-            >
-              Sign Up
-            </Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+    <Grid centered>
+      <Segment style={{ textAlign: "center" }}>
+        <Header as="h2" content="Register" />
+        <Grid.Column>
+          <Input
+            type="text"
+            placeholder="Name"
+            onChange={(e, { value }) => setName({ value: value, error: "" })}
+          />
+        </Grid.Column>
+        <Grid.Column>
+          <Input
+            type="text"
+            placeholder="Email"
+            onChange={(e, { value }) => setEmail({ value: value, error: "" })}
+            style={{ marginTop: 10 }}
+          />
+        </Grid.Column>
+
+        <Grid.Column>
+          <Input
+            type="text"
+            placeholder="Password"
+            onChange={(e, { value }) =>
+              setPassword({ value: value, error: "" })
+            }
+            style={{ marginTop: 10 }}
+          />
+        </Grid.Column>
+        <Grid.Column>
+          <Button
+            loading={loading}
+            mode="contained"
+            onClick={() => handleSignUp()}
+            style={{ marginTop: 10 }}
+            color="black"
+          >
+            Sign Up
+          </Button>
+        </Grid.Column>
+      </Segment>
+    </Grid>
   );
 };
 

@@ -1,20 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
+import { Media } from "../core/media";
 import { Grid, Segment, Form } from "semantic-ui-react";
-import { addNote } from "../api/notes";
 import AppContext from "../context/appContext";
 import NoteItem from "./app/NoteItem";
+import { ResponsiveInput } from "./responsive";
 
 const MainEvent = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [radioValue, setRadioValue] = useState(null);
   const state = useContext(AppContext);
-  const { uid, loadNotes, notes } = state;
-
-  let importance = radioValue;
-
-  const handleSubmit = async () =>
-    await addNote(uid, title, content, importance).then(() => loadNotes());
+  const { notes } = state;
 
   return (
     <div>
@@ -22,55 +15,74 @@ const MainEvent = () => {
         <p id="title">Noted</p>
       </Grid>
       <Grid>
-        <Grid.Column width={10}>
-          <Segment raised style={{ backgroundColor: "#DDBA3B" }}>
-            <Form>
-              <Form.Input
-                label="Title"
-                value={title}
-                placeholder="Title"
-                onChange={(e, { value }) => setTitle(value)}
-              />
-              <Form.Group inline>
-                <label>Level of importance</label>
-                <Form.Radio
-                  label="Lv.1"
-                  value="Lv.1"
-                  checked={radioValue === "Lv.1"}
-                  onChange={(e, { value }) => setRadioValue(value)}
-                />
-                <Form.Radio
-                  label="Lv.2"
-                  value="Lv.2"
-                  checked={radioValue === "Lv.2"}
-                  onChange={(e, { value }) => setRadioValue(value)}
-                />
-                <Form.Radio
-                  label="Lv.3"
-                  value="Lv.3"
-                  checked={radioValue === "Lv.3"}
-                  onChange={(e, { value }) => setRadioValue(value)}
-                />
-                <Form.Radio
-                  label="Lv.4"
-                  value="Lv.4"
-                  checked={radioValue === "Lv.4"}
-                  onChange={(e, { value }) => setRadioValue(value)}
-                />
-              </Form.Group>
-              <Form.TextArea
-                label="Content"
-                value={content}
-                placeholder="Enter note data here"
-                onChange={(e, { value }) => setContent(value)}
-              />
-              <Form.Button color="black" onClick={() => handleSubmit()}>
-                Submit
-              </Form.Button>
-            </Form>
-          </Segment>
-        </Grid.Column>
-        <Grid.Column width={6}>{notes && <NoteItem />}</Grid.Column>
+        <Grid.Row columns="equal">
+          {/* @ mobile */}
+          <Grid.Column as={Media} at="mobile" width={16}>
+            <ResponsiveInput />
+          </Grid.Column>
+
+          <Grid.Column as={Media} at="mobile" width={16}>
+            {notes && (
+              <Segment
+                fluid
+                inverted
+                style={{
+                  marginTop: 10,
+                  marginBottom: 20,
+                  maxHeight: "35vh",
+                  overflowY: "scroll",
+                  backgroundColor: "#FDD543",
+                }}
+              >
+                <NoteItem />
+              </Segment>
+            )}
+          </Grid.Column>
+
+          {/* @ tablet */}
+
+          <Grid.Column as={Media} at="tablet" width={9}>
+            <ResponsiveInput />
+          </Grid.Column>
+
+          <Grid.Column as={Media} at="tablet">
+            {notes && (
+              <Segment
+                fluid
+                inverted
+                style={{
+                  maxHeight: "65vh",
+                  overflowY: "scroll",
+                  backgroundColor: "#FDD543",
+                }}
+              >
+                <NoteItem />
+              </Segment>
+            )}
+          </Grid.Column>
+
+          {/* @ greater */}
+
+          <Grid.Column as={Media} greaterThan="tablet" width={8}>
+            <ResponsiveInput />
+          </Grid.Column>
+
+          <Grid.Column as={Media} greaterThan="tablet">
+            {notes && (
+              <Segment
+                fluid
+                inverted
+                style={{
+                  maxHeight: "65vh",
+                  overflowY: "scroll",
+                  backgroundColor: "#FDD543",
+                }}
+              >
+                <NoteItem />
+              </Segment>
+            )}
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </div>
   );

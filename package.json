@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "preDeploy": "firebase serve --only hosting",
+    "preDeploy": "yarn run build && firebase serve --only hosting",
     "deploy": "yarn run build && firebase deploy",
     "build": "react-scripts build",
     "test": "react-scripts test",

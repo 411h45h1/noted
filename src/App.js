@@ -8,7 +8,7 @@ import {
 import "./App.css";
 import { MediaContextProvider } from "./core/media";
 
-import { Segment } from "semantic-ui-react";
+import { Grid, Segment } from "semantic-ui-react";
 import AppContext from "./context/appContext";
 import LabelButtons from "./components/app/LabelButtons";
 
@@ -25,24 +25,28 @@ const App = () => {
     <Router basename="/">
       <MediaContextProvider>
         <div className="App">
-          <div className="App-background">
-            <Segment
-              className="MainCard"
-              inverted
-              style={{ backgroundColor: loggedIn ? mainColor : onboardColors }}
-            >
-              {loggedIn && <LabelButtons />}
+          <Grid centered columns={1}>
+            <Grid.Column>
+              <Segment
+                className="MainCard"
+                inverted
+                style={{
+                  backgroundColor: loggedIn ? mainColor : onboardColors,
+                }}
+              >
+                {loggedIn && <LabelButtons />}
 
-              <Switch>
-                <Route exact path="/">
-                  {loggedIn ? <MainEvent /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/login" component={OnBoard}>
-                  {loggedIn ? <Redirect to="/" /> : <OnBoard />}
-                </Route>
-              </Switch>
-            </Segment>
-          </div>
+                <Switch>
+                  <Route exact path="/">
+                    {loggedIn ? <MainEvent /> : <Redirect to="/login" />}
+                  </Route>
+                  <Route path="/login" component={OnBoard}>
+                    {loggedIn ? <Redirect to="/" /> : <OnBoard />}
+                  </Route>
+                </Switch>
+              </Segment>{" "}
+            </Grid.Column>
+          </Grid>
         </div>
       </MediaContextProvider>
     </Router>
