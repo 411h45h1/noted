@@ -6,6 +6,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import "./App.css";
+import { MediaContextProvider } from "./core/media";
+
 import { Segment } from "semantic-ui-react";
 import AppContext from "./context/appContext";
 import LabelButtons from "./components/app/LabelButtons";
@@ -21,26 +23,28 @@ const App = () => {
 
   return (
     <Router basename="/">
-      <div className="App">
-        <div className="App-background">
-          <Segment
-            className="MainCard"
-            inverted
-            style={{ backgroundColor: loggedIn ? mainColor : onboardColors }}
-          >
-            {loggedIn && <LabelButtons />}
+      <MediaContextProvider>
+        <div className="App">
+          <div className="App-background">
+            <Segment
+              className="MainCard"
+              inverted
+              style={{ backgroundColor: loggedIn ? mainColor : onboardColors }}
+            >
+              {loggedIn && <LabelButtons />}
 
-            <Switch>
-              <Route exact path="/">
-                {loggedIn ? <MainEvent /> : <Redirect to="/login" />}
-              </Route>
-              <Route path="/login" component={OnBoard}>
-                {loggedIn ? <Redirect to="/" /> : <OnBoard />}
-              </Route>
-            </Switch>
-          </Segment>
+              <Switch>
+                <Route exact path="/">
+                  {loggedIn ? <MainEvent /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/login" component={OnBoard}>
+                  {loggedIn ? <Redirect to="/" /> : <OnBoard />}
+                </Route>
+              </Switch>
+            </Segment>
+          </div>
         </div>
-      </div>
+      </MediaContextProvider>
     </Router>
   );
 };
