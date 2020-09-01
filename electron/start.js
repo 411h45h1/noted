@@ -11,8 +11,8 @@ const createWindow = async () => {
   await app.whenReady();
   mainWindow = new BrowserWindow({
     icon: __dirname + "/build/favicon.ico",
-    minHeight: 825,
-    minWidth: 1000,
+    minHeight: 830,
+    minWidth: 470,
     maxHeight: 1500,
     maxWidth: 2050,
     webPreferences: {

@@ -43,48 +43,47 @@ const Register = () => {
   }
 
   return (
-    <Segment>
-      <Header as="h2" content="Register" />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column>
-            {error && <p>{error}</p>}
+    <Grid centered>
+      <Segment style={{ textAlign: "center" }}>
+        <Header as="h2" content="Register" />
+        <Grid.Column>
+          {error && <p>{error}</p>}
 
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email.value}
-              onChange={(e, { value }) => setEmail({ value: value, error: "" })}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password.value}
-              onChange={(e, { value }) =>
-                setPassword({ value: value, error: "" })
-              }
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Button
-              loading={loading}
-              mode="contained"
-              onClick={() => {
-                handleSignUp();
-              }}
-            >
-              Sign Up
-            </Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email.value}
+            onChange={(e, { value }) => setEmail({ value: value, error: "" })}
+            style={{ marginTop: 10 }}
+          />
+        </Grid.Column>
+
+        <Grid.Column>
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password.value}
+            onChange={(e, { value }) =>
+              setPassword({ value: value, error: "" })
+            }
+            style={{ marginTop: 10 }}
+          />
+        </Grid.Column>
+
+        <Grid.Column>
+          <Button
+            loading={loading}
+            mode="contained"
+            onClick={() => {
+              handleSignUp();
+            }}
+            style={{ marginTop: 10 }}
+          >
+            Sign Up
+          </Button>
+        </Grid.Column>
+      </Segment>
+    </Grid>
   );
 };
 

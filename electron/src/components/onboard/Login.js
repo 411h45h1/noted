@@ -59,47 +59,45 @@ const Login = () => {
   }
 
   return (
-    <Segment>
-      <Header as="h2" content="Login" />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column>
-            {error && <p>{error}</p>}
-            <Input
-              type="email"
-              value={email.value}
-              placeholder="Email"
-              onChange={(e, { value }) => setEmail({ value: value, error: "" })}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Input
-              type="password"
-              value={password.value}
-              placeholder="Password"
-              onChange={(e, { value }) =>
-                setPassword({ value: value, error: "" })
-              }
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Button
-              loading={loading}
-              mode="contained"
-              onClick={() => {
-                handleLogin();
-              }}
-            >
-              Login
-            </Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+    <Grid centered>
+      <Segment style={{ textAlign: "center" }}>
+        <Header as="h2" content="Login" />
+        <Grid.Column>
+          {error && <p>{error}</p>}
+          <Input
+            type="email"
+            value={email.value}
+            placeholder="Email"
+            onChange={(e, { value }) => setEmail({ value: value, error: "" })}
+          />
+        </Grid.Column>
+
+        <Grid.Column>
+          <Input
+            type="password"
+            value={password.value}
+            placeholder="Password"
+            onChange={(e, { value }) =>
+              setPassword({ value: value, error: "" })
+            }
+            style={{ marginTop: 10 }}
+          />
+        </Grid.Column>
+
+        <Grid.Column>
+          <Button
+            loading={loading}
+            mode="contained"
+            onClick={() => {
+              handleLogin();
+            }}
+            style={{ marginTop: 10 }}
+          >
+            Login
+          </Button>
+        </Grid.Column>
+      </Segment>
+    </Grid>
   );
 };
 

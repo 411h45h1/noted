@@ -23,24 +23,27 @@ const OnBoard = () => {
 
   return (
     <Grid>
-      <p id="title">Noted</p>
-      <Grid.Column floated="right" width={4}>
-        <Button
-          toggle
-          color="black"
-          active={toggleLogin}
-          content="Login"
-          onClick={() => handleLogin()}
-        />
-        <Button
-          toggle
-          color="black"
-          active={toggleRegister}
-          content="Register"
-          onClick={() => handleRegister()}
-        />
-      </Grid.Column>
       <Grid.Row>
+        <Grid.Column width={16}>
+          <Button.Group floated="right">
+            <Button
+              toggle
+              color="black"
+              active={toggleLogin}
+              content="Login"
+              onClick={() => handleLogin()}
+            />
+            <Button
+              toggle
+              color="black"
+              active={toggleRegister}
+              content="Register"
+              onClick={() => handleRegister()}
+            />
+          </Button.Group>
+        </Grid.Column>
+        <p id="title">Noted</p>
+
         <Grid.Column width={16}>
           {toggleRegister && <Register />}
           {toggleLogin && <Login />}
