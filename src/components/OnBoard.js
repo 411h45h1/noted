@@ -53,7 +53,7 @@ const OnBoard = () => {
                 target="blank_"
                 header="Welcome Noted!"
                 meta="By Ahmed Ali"
-                description="Powered by React & Google Firebase"
+                description="Powered by React, Google Firebase & Semantic Ui"
                 style={{ textAlign: "center", fontsize: "rem" }}
               />
             </Grid>
