@@ -1,5 +1,4 @@
 # Noted
-> ⚠️ I'm currently working on this project ⚠️   
 
 > Live Website: https://noted-55f73.web.app
 
