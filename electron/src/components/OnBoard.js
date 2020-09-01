@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button } from "semantic-ui-react";
+import { Grid, Card, Button } from "semantic-ui-react";
 import Login from "./onboard/Login";
 import Register from "./onboard/Register";
 
@@ -45,6 +45,19 @@ const OnBoard = () => {
         <p id="title">Noted</p>
 
         <Grid.Column width={16}>
+          {!toggleLogin && !toggleRegister && (
+            <Grid centered>
+              <Card
+                link
+                href="https://github.com/AhmedAlihashi/noted"
+                target="blank_"
+                header="Welcome Noted!"
+                meta="By Ahmed Ali"
+                description="Powered by React & Google Firebase"
+                style={{ textAlign: "center", fontsize: "rem" }}
+              />
+            </Grid>
+          )}
           {toggleRegister && <Register />}
           {toggleLogin && <Login />}
         </Grid.Column>
