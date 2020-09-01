@@ -1,8 +1,16 @@
 import React from "react";
 import { Media } from "../core/media";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import NoteItem from "./app/NoteItem";
 import { ResponsiveInput } from "./responsive";
+
+import {
+  NOTE_SCROLL_MOBILE,
+  NOTE_SCROLL_TABLET,
+  NOTE_SCROLL_COMPUTER,
+  NOTE_SCROLL_LARGESCREEN,
+  NOTE_SCROLL_GREATER,
+} from "./responsive/Note_Scroll";
 
 const MainEvent = () => {
   return (
@@ -18,22 +26,7 @@ const MainEvent = () => {
           </Grid.Column>
 
           <Grid.Column as={Media} at="mobile" width={16}>
-            <Segment
-              fluid
-              inverted
-              style={{
-                marginTop: 10,
-                marginBottom: 20,
-                minHeight: "20vh",
-                maxHeight: "25vh",
-                overflowY: "scroll",
-                backgroundColor: "#FDD543",
-              }}
-            >
-              <Grid columns={1}>
-                <NoteItem />
-              </Grid>
-            </Segment>
+            <NOTE_SCROLL_MOBILE col={1} />
           </Grid.Column>
 
           {/* @ tablet */}
@@ -43,19 +36,7 @@ const MainEvent = () => {
           </Grid.Column>
 
           <Grid.Column as={Media} at="tablet" width={7}>
-            <Segment
-              fluid
-              inverted
-              style={{
-                maxHeight: "65vh",
-                overflowY: "scroll",
-                backgroundColor: "#FDD543",
-              }}
-            >
-              <Grid columns={1}>
-                <NoteItem />
-              </Grid>
-            </Segment>
+            <NOTE_SCROLL_TABLET col={1} />
           </Grid.Column>
 
           {/* @ computer */}
@@ -65,19 +46,7 @@ const MainEvent = () => {
           </Grid.Column>
 
           <Grid.Column as={Media} at="computer" width={9}>
-            <Segment
-              fluid
-              inverted
-              style={{
-                maxHeight: "65vh",
-                overflowY: "scroll",
-                backgroundColor: "#FDD543",
-              }}
-            >
-              <Grid columns={2}>
-                <NoteItem />
-              </Grid>
-            </Segment>
+            <NOTE_SCROLL_COMPUTER col={2} />
           </Grid.Column>
 
           {/* @ largeScreen */}
@@ -87,19 +56,7 @@ const MainEvent = () => {
           </Grid.Column>
 
           <Grid.Column as={Media} at="largeScreen" width={9}>
-            <Segment
-              fluid
-              inverted
-              style={{
-                maxHeight: "65vh",
-                overflowY: "scroll",
-                backgroundColor: "#FDD543",
-              }}
-            >
-              <Grid columns={3}>
-                <NoteItem />
-              </Grid>
-            </Segment>
+            <NOTE_SCROLL_LARGESCREEN col={3} />
           </Grid.Column>
 
           {/* @ greater */}
@@ -109,19 +66,7 @@ const MainEvent = () => {
           </Grid.Column>
 
           <Grid.Column as={Media} greaterThan="largeScreen" width={10}>
-            <Segment
-              fluid
-              inverted
-              style={{
-                maxHeight: "65vh",
-                overflowY: "scroll",
-                backgroundColor: "#FDD543",
-              }}
-            >
-              <Grid columns={4}>
-                <NoteItem />
-              </Grid>
-            </Segment>
+            <NOTE_SCROLL_GREATER col={4} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
